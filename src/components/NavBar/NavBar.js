@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import FormControl from "react-bootstrap/FormControl";
 import fetcher from "../../utils/fetcher";
 import Col from "react-bootstrap/Col";
+import Logo from "../../res/images/logo.svg";
+import Image from "react-bootstrap/Image";
 
 function NavBar(props) {
     const handleLogOut = async () => {
@@ -20,8 +22,8 @@ function NavBar(props) {
     };
 
     return (
-        <Navbar variant="dark" className="navbar-color">
-            <Navbar.Brand href="/main">B-Brick</Navbar.Brand>
+        <Navbar variant="dark" className="navbar-color border-bottom">
+            <Navbar.Brand href="/main"><Image src={Logo} width="50" height="50"/></Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link href="/main" className="text-white">Home</Nav.Link>
                 {/*<Nav.Link href="#features">Features</Nav.Link>*/}

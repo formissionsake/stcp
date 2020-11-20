@@ -6,8 +6,8 @@ export function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://www.bbrick.io/">
-        B-Brick
+      <Link color="inherit" href="#">
+        STCP
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

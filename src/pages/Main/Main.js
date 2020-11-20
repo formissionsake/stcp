@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import fetcher from '../../utils/fetcher';
 import {useEffect, useState} from "react";
+import {Typography} from "@material-ui/core";
 
 function Main(props) {
     const [stpcBalance, setStpcBalance] = useState(0);
@@ -26,8 +27,7 @@ function Main(props) {
     };
 
     const generateAddress = async () => {
-        // e.preventDefault();
-        await fetcher.post('/user/login', {username: '', password: ''})
+        await fetcher.post('/user/login', {username: 'bbrick', password: '123'})
             .then((res) => {
                 console.log(res.data.address);
                 setAddress(res.data.address);
@@ -44,53 +44,55 @@ function Main(props) {
     return (
         <>
             <NavBar {...props}/>
-            <Container className="mt-3">
-                <Row className="border p-5">
-                    <Col xs={12} sm={12} md={4} lg={4} xl={4}>
-                        <h2>Buy</h2>
-                        <Form className="mt-4">
-                            <Form.Group controlId="formBuy">
-                                <Form.Label>Buy amount</Form.Label>
-                                <Form.Control type="number" placeholder="Enter amount"/>
-                            </Form.Group>
-                            <Button type="submit" variant="flat">
-                                Buy
-                            </Button>
-                        </Form>
-                    </Col>
-                    <Col xs={12} sm={12} md={4} className="mt-5 mt-sm-5 mt-md-0 offset-md-1">
-                        <h2>Deposit</h2>
-                        <Form className="mt-4">
-                            <Form.Group controlId="formDeposit">
-                                <Form.Label>STPC Address</Form.Label>
-                                <Form.Control type="text" value={address} disabled={true}/>
-                            </Form.Group>
-                        </Form>
-                        {!address
-                            ? (
-                                <Button type="submit" variant="flat" onClick={generateAddress}>
-                                    Generate address
+            <Container fluid className="mt-0 bg-image">
+                {/*<Container className="mt-auto">*/}
+                    <Row className="border-bottom p-5">
+                        <Col xs={12} sm={12} md={4} lg={4} xl={4}>
+                            <Typography variant="h3" color="primary">Buy</Typography>
+                            <Form className="mt-4">
+                                <Form.Group controlId="formBuy">
+                                    <Form.Label className="text-light">Buy amount</Form.Label>
+                                    <Form.Control type="number" placeholder="Enter amount"/>
+                                </Form.Group>
+                                <Button type="submit" variant="flat">
+                                    Buy
                                 </Button>
-                            )
-                            : null
-                        }
-                    </Col>
-                    <Col xs={12} sm={12} md={2} className="mt-5 mt-sm-5 mt-md-0 offset-md-1">
-                        <h2>Balance</h2>
-                        <Form className="mt-4">
-                            <Form.Group controlId="formBalance">
-                                <Form.Label>STPC balance</Form.Label>
-                                <Form.Control type="number" disabled={true} value={stpcBalance}/>
-                                <Form.Label className="mt-3">USDT balance</Form.Label>
-                                <Form.Control type="number" disabled={true} value={usdtBalance}/>
-                            </Form.Group>
-                            {/*<Button type="submit" variant="primary">*/}
-                            {/*    Buy*/}
-                            {/*</Button>*/}
-                        </Form>
-                    </Col>
+                            </Form>
+                        </Col>
+                        <Col xs={12} sm={12} md={4} className="mt-5 mt-sm-5 mt-md-0 offset-md-1">
+                            <Typography variant="h3" color="primary">Deposit</Typography>
+                            <Form className="mt-4">
+                                <Form.Group controlId="formDeposit">
+                                    <Form.Label className="text-light">STPC Address</Form.Label>
+                                    <Form.Control type="text" value={address} disabled={true} className="overflow-auto"/>
+                                </Form.Group>
+                            </Form>
+                            {!address
+                                ? (
+                                    <Button type="submit" variant="flat" onClick={generateAddress}>
+                                        Generate address
+                                    </Button>
+                                )
+                                : null
+                            }
+                        </Col>
+                        <Col xs={12} sm={12} md={2} className="mt-5 mt-sm-5 mt-md-0 offset-md-1">
+                            <Typography variant="h3" color="primary">Balance</Typography>
+                            <Form className="mt-4">
+                                <Form.Group controlId="formBalance">
+                                    <Form.Label className="text-light">STPC balance</Form.Label>
+                                    <Form.Control type="number" disabled={true} value={stpcBalance}/>
+                                    <Form.Label className="mt-3 text-light">USDT balance</Form.Label>
+                                    <Form.Control type="number" disabled={true} value={usdtBalance}/>
+                                </Form.Group>
+                                {/*<Button type="submit" variant="primary">*/}
+                                {/*    Buy*/}
+                                {/*</Button>*/}
+                            </Form>
+                        </Col>
 
-                </Row>
+                    </Row>
+                {/*</Container>*/}
             </Container>
         </>
     )
