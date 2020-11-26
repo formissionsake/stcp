@@ -12,6 +12,7 @@ import {Typography} from "@material-ui/core";
 function Main(props) {
     const [stpcBalance, setStpcBalance] = useState(0);
     const [usdtBalance, setUsdtBalance] = useState(0);
+    const [ethBalance, setEthBalance] = useState(0);
     const [address, setAddress] = useState('');
 
     const fetchBalance = async () => {
@@ -45,10 +46,10 @@ function Main(props) {
         <>
             <NavBar {...props}/>
             <Container fluid className="mt-0 bg-image">
-                {/*<Container className="mt-auto">*/}
-                    <Row className="border-bottom p-5">
-                        <Col xs={12} sm={12} md={4} lg={4} xl={4}>
-                            <Typography variant="h3" color="primary">Buy</Typography>
+                <Container>
+                    <Row className="py-5">
+                        <Col xs={12} sm={12} md={4}>
+                            <Typography variant="h4" style={{color: 'white'}}>Buy</Typography>
                             <Form className="mt-4">
                                 <Form.Group controlId="formBuy">
                                     <Form.Label className="text-light">Buy amount</Form.Label>
@@ -60,7 +61,7 @@ function Main(props) {
                             </Form>
                         </Col>
                         <Col xs={12} sm={12} md={4} className="mt-5 mt-sm-5 mt-md-0 offset-md-1">
-                            <Typography variant="h3" color="primary">Deposit</Typography>
+                            <Typography variant="h4" style={{color: 'white'}}>Deposit</Typography>
                             <Form className="mt-4">
                                 <Form.Group controlId="formDeposit">
                                     <Form.Label className="text-light">STPC Address</Form.Label>
@@ -75,24 +76,31 @@ function Main(props) {
                                 )
                                 : null
                             }
+                            <Form className="mt-4">
+                                <Form.Group controlId="formDeposit">
+                                    <Form.Label className="text-light">ETH Address</Form.Label>
+                                    <Form.Control type="text" value={address} disabled={true} className="overflow-auto"/>
+                                </Form.Group>
+                            </Form>
                         </Col>
                         <Col xs={12} sm={12} md={2} className="mt-5 mt-sm-5 mt-md-0 offset-md-1">
-                            <Typography variant="h3" color="primary">Balance</Typography>
+                            <Typography variant="h4" style={{color: 'white'}}>Balance</Typography>
                             <Form className="mt-4">
                                 <Form.Group controlId="formBalance">
                                     <Form.Label className="text-light">STPC balance</Form.Label>
                                     <Form.Control type="number" disabled={true} value={stpcBalance}/>
                                     <Form.Label className="mt-3 text-light">USDT balance</Form.Label>
                                     <Form.Control type="number" disabled={true} value={usdtBalance}/>
+                                    <Form.Label className="mt-3 text-light">ETH balance</Form.Label>
+                                    <Form.Control type="number" disabled={true} value={ethBalance}/>
                                 </Form.Group>
                                 {/*<Button type="submit" variant="primary">*/}
                                 {/*    Buy*/}
                                 {/*</Button>*/}
                             </Form>
                         </Col>
-
                     </Row>
-                {/*</Container>*/}
+                </Container>
             </Container>
         </>
     )

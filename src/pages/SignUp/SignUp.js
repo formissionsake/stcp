@@ -26,19 +26,19 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: '#01c58e',
+        background: 'linear-gradient(90deg, #eb1b8c, #ff9445)',
     },
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(3),
     },
     submit: {
-        backgroundColor: '#01c58e',
+        background: 'linear-gradient(90deg, #eb1b8c, #ff9445)',
         color: 'white',
         margin: theme.spacing(3, 0, 2),
     },
     link: {
-        color: '#01c58e'
+        color: 'linear-gradient(90deg, #eb1b8c, #ff9445)',
     }
 }));
 

@@ -12,6 +12,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Copyright} from "../../utils/utils";
 import fetcher from "../../utils/fetcher";
+import {red} from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,19 +24,22 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: '#01c58e',
+        background: 'linear-gradient(90deg, #eb1b8c, #ff9445)',
     },
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
+        '&:active': {
+            color: red,
+        }
     },
     submit: {
-        backgroundColor: '#01c58e',
+        background: 'linear-gradient(90deg, #eb1b8c, #ff9445)',
         color: 'white',
         margin: theme.spacing(3, 0, 2),
     },
     link: {
-        color: '#01c58e'
+        color: 'linear-gradient(90deg, #eb1b8c, #ff9445)',
     }
 }));
 
@@ -58,7 +62,7 @@ function SignIn(props) {
               props.history.push('/main');
           })
           .catch((e) => {
-              console.log(e);
+              console.error(e);
           });
     };
 
@@ -66,9 +70,6 @@ function SignIn(props) {
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className={classes.paper}>
-                <Box>
-                    {/*<Logo />*/}
-                </Box>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
