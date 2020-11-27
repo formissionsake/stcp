@@ -10,6 +10,8 @@ import {useEffect, useState} from "react";
 import {Typography} from "@material-ui/core";
 
 function Main(props) {
+    const [stpcAmount, setStpcAmount] = useState('');
+    const [usdtAmount, setUsdtAmount] = useState('');
     const [stpcBalance, setStpcBalance] = useState(0);
     const [usdtBalance, setUsdtBalance] = useState(0);
     const [ethBalance, setEthBalance] = useState(0);
@@ -38,6 +40,17 @@ function Main(props) {
             });
     };
 
+    const buyStpc = async () => {
+        await fetcher.post('/user/buy', {amount: stpcAmount})
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.error(err);
+                alert('Something went wrong. Can you try again?');
+            });
+    };
+
     useEffect(() => {
         fetchBalance();
     }, []);
@@ -52,12 +65,21 @@ function Main(props) {
                             <Typography variant="h4" style={{color: 'white'}}>Buy</Typography>
                             <Form className="mt-4">
                                 <Form.Group controlId="formBuy">
-                                    <Form.Label className="text-light">Buy amount</Form.Label>
+                                    <Form.Label className="text-light">STPC amount</Form.Label>
                                     <Form.Control type="number" placeholder="Enter amount"/>
+                                    <Button type="submit" variant="flat" className="mt-2 py-1">
+                                        Buy
+                                    </Button>
                                 </Form.Group>
-                                <Button type="submit" variant="flat">
-                                    Buy
-                                </Button>
+                            </Form>
+                            <Form className="mt-4">
+                                <Form.Group controlId="formBuy">
+                                    <Form.Label className="text-light">USDT amount</Form.Label>
+                                    <Form.Control type="number" placeholder="Enter amount"/>
+                                    <Button type="submit" variant="flat" className="mt-2 py-1">
+                                        Buy
+                                    </Button>
+                                </Form.Group>
                             </Form>
                         </Col>
                         <Col xs={12} sm={12} md={4} className="mt-5 mt-sm-5 mt-md-0 offset-md-1">
@@ -65,21 +87,23 @@ function Main(props) {
                             <Form className="mt-4">
                                 <Form.Group controlId="formDeposit">
                                     <Form.Label className="text-light">STPC Address</Form.Label>
-                                    <Form.Control type="text" value={address} disabled={true} className="overflow-auto"/>
+                                    <Form.Control type="text" value={address} disabled={true}
+                                                  className="overflow-auto"/>
                                 </Form.Group>
                             </Form>
-                            {!address
-                                ? (
-                                    <Button type="submit" variant="flat" onClick={generateAddress}>
-                                        Generate address
-                                    </Button>
-                                )
-                                : null
-                            }
-                            <Form className="mt-4">
+                            {/*{!address*/}
+                            {/*    ? (*/}
+                            {/*        <Button type="submit" variant="flat" onClick={generateAddress}>*/}
+                            {/*            Generate address*/}
+                            {/*        </Button>*/}
+                            {/*    )*/}
+                            {/*    : null*/}
+                            {/*}*/}
+                            <Form>
                                 <Form.Group controlId="formDeposit">
                                     <Form.Label className="text-light">ETH Address</Form.Label>
-                                    <Form.Control type="text" value={address} disabled={true} className="overflow-auto"/>
+                                    <Form.Control type="text" value={address} disabled={true}
+                                                  className="overflow-auto"/>
                                 </Form.Group>
                             </Form>
                         </Col>
